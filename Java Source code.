@@ -1,0 +1,66 @@
+// Car.java
+public class Car {
+private String make;
+private String model;
+private int year;
+private boolean available;
+// Constructor, getters, setters
+}
+// Customer.java
+public class Customer {
+private String name;
+private String contact;
+// Constructor, getters, setters
+}
+// RentalAgency.java
+import java.util.ArrayList;
+import java.util.List;
+public class RentalAgency {
+private List cars;
+private List customers;
+public RentalAgency() {
+cars = new ArrayList<>();
+customers = new ArrayList<>();
+}
+// Car management methods
+public void addCar(Car car) {
+cars.add(car);
+}
+public void removeCar(Car car) {
+cars.remove(car);
+}
+// Customer management methods
+public void addCustomer(Customer customer) {
+customers.add(customer);
+}
+public void removeCustomer(Customer customer) {
+customers.remove(customer);
+}
+// Rental transaction methods
+public void rentCar(Customer customer, Car car) {
+if (car.isAvailable()) {
+car.setAvailable(false);
+System.out.println(customer.getName() + " rented " + car.getMake() + " " + car.getModel());
+} else {
+System.out.println("Sorry, " + car.getMake() + " " + car.getModel() + " is not available for rent.");
+}
+}
+public void returnCar(Customer customer, Car car) {
+car.setAvailable(true);
+System.out.println(customer.getName() + " returned " + car.getMake() + " " + car.getModel());
+}
+}
+// Main.java (for testing)
+public class Main {
+public static void main(String[] args) {
+Car car1 = new Car("Toyota", "Corolla", 2020, true);
+Car car2 = new Car("Honda", "Civic", 2019, false);
+Customer customer1 = new Customer("John Doe", "123-456-7890");
+RentalAgency agency = new RentalAgency();
+agency.addCar(car1);
+agency.addCar(car2);
+agency.addCustomer(customer1);
+agency.rentCar(customer1, car1);
+agency.returnCar(customer1, car1);
+}
+}
